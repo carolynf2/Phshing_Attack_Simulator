@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detective Agency</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="neon-sign">
+                <h1>PHISHING DETECTIVE AGENCY</h1>
+                <p class="tagline">Your digital security is our business</p>
+            </div>
+            <div class="menu-options">
+                <button class="noir-button" onclick="startGame()">START INVESTIGATION</button>
+                <button class="noir-button" onclick="showBadges()">VIEW BADGES</button>
+                <button class="noir-button" onclick="showInstructions()">HOW TO PLAY</button>
+            </div>
+            <div class="agency-info">
+                <p>Detective Rank: <span id="rank">ROOKIE</span></p>
+                <p>Cases Solved: <span id="cases-solved">0</span></p>
+                <p>Reputation: <span id="reputation">0</span></p>
+            </div>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions" class="screen">
+            <div class="case-file">
+                <h2>DETECTIVE TRAINING MANUAL</h2>
+                <div class="manual-content">
+                    <p><strong>Your Mission:</strong> Run your own cybersecurity investigation firm and solve phishing mysteries.</p>
+                    <h3>How to Play:</h3>
+                    <ul>
+                        <li>Analyze suspicious emails for phishing indicators</li>
+                        <li>Interview witnesses to gather evidence</li>
+                        <li>Follow digital trails to solve cases</li>
+                        <li>Earn detective badges and build your reputation</li>
+                    </ul>
+                    <h3>Look out for:</h3>
+                    <ul>
+                        <li>Suspicious sender addresses</li>
+                        <li>Urgent or threatening language</li>
+                        <li>Requests for personal information</li>
+                        <li>Unusual links or attachments</li>
+                    </ul>
+                </div>
+                <button class="noir-button" onclick="showMainMenu()">BACK TO OFFICE</button>
+            </div>
+        </div>
+
+        <!-- Badges Screen -->
+        <div id="badges" class="screen">
+            <div class="case-file">
+                <h2>DETECTIVE BADGES</h2>
+                <div id="badges-grid" class="badges-grid">
+                    <!-- Badges will be populated by JavaScript -->
+                </div>
+                <button class="noir-button" onclick="showMainMenu()">BACK TO OFFICE</button>
+            </div>
+        </div>
+
+        <!-- Case Selection -->
+        <div id="case-selection" class="screen">
+            <div class="case-file">
+                <h2>ACTIVE CASES</h2>
+                <div id="cases-list" class="cases-list">
+                    <!-- Cases will be populated by JavaScript -->
+                </div>
+                <button class="noir-button" onclick="showMainMenu()">BACK TO OFFICE</button>
+            </div>
+        </div>
+
+        <!-- Case Investigation -->
+        <div id="case-investigation" class="screen">
+            <div class="investigation-header">
+                <h2 id="case-title">CASE #001</h2>
+                <p id="case-description">Investigating suspicious activity...</p>
+            </div>
+
+            <!-- Email Analysis Section -->
+            <div id="email-section" class="investigation-section">
+                <h3>EVIDENCE: SUSPICIOUS EMAIL</h3>
+                <div class="email-container">
+                    <div class="email-header">
+                        <p><strong>From:</strong> <span id="email-from">sender@example.com</span></p>
+                        <p><strong>To:</strong> <span id="email-to">victim@company.com</span></p>
+                        <p><strong>Subject:</strong> <span id="email-subject">Urgent Action Required</span></p>
+                        <p><strong>Date:</strong> <span id="email-date">Today</span></p>
+                    </div>
+                    <div class="email-body" id="email-body">
+                        Email content will appear here...
+                    </div>
+                </div>
+                <div class="analysis-tools">
+                    <h4>ANALYSIS TOOLS</h4>
+                    <button class="analysis-button" onclick="analyzeEmail('sender')">Check Sender</button>
+                    <button class="analysis-button" onclick="analyzeEmail('links')">Analyze Links</button>
+                    <button class="analysis-button" onclick="analyzeEmail('language')">Check Language</button>
+                    <button class="analysis-button" onclick="analyzeEmail('attachments')">Scan Attachments</button>
+                </div>
+                <div id="analysis-results" class="analysis-results"></div>
+            </div>
+
+            <!-- Witness Interview Section -->
+            <div id="witness-section" class="investigation-section">
+                <h3>WITNESS INTERVIEWS</h3>
+                <div id="witnesses-list" class="witnesses-list">
+                    <!-- Witnesses will be populated by JavaScript -->
+                </div>
+                <div id="interview-dialogue" class="interview-dialogue hidden">
+                    <div class="dialogue-box">
+                        <p><strong id="witness-name">Witness Name</strong></p>
+                        <p id="witness-dialogue">Witness statement...</p>
+                        <div id="interview-options" class="interview-options">
+                            <!-- Interview options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Resolution -->
+            <div id="resolution-section" class="investigation-section">
+                <h3>CASE RESOLUTION</h3>
+                <div class="resolution-form">
+                    <p>Based on your investigation, what is your conclusion?</p>
+                    <div id="resolution-options" class="resolution-options">
+                        <!-- Resolution options will be populated by JavaScript -->
+                    </div>
+                    <button class="noir-button" id="submit-case" onclick="submitCase()" disabled>CLOSE CASE</button>
+                </div>
+            </div>
+
+            <button class="noir-button back-button" onclick="showCaseSelection()">BACK TO CASES</button>
+        </div>
+
+        <!-- Case Result -->
+        <div id="case-result" class="screen">
+            <div class="result-container">
+                <h2 id="result-title">CASE CLOSED</h2>
+                <div id="result-content" class="result-content">
+                    <!-- Result content will be populated by JavaScript -->
+                </div>
+                <div id="rewards" class="rewards">
+                    <!-- Rewards will be populated by JavaScript -->
+                </div>
+                <button class="noir-button" onclick="showCaseSelection()">NEXT CASE</button>
+                <button class="noir-button" onclick="showMainMenu()">BACK TO OFFICE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
